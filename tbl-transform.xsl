@@ -168,8 +168,19 @@
   <xsl:template match="table[@name='tblSchulen']">
     <xsl:element name="hp:School">
       <xsl:attribute name="rdf:about">&school;<xsl:value-of select="column[@name='Key_Schulen']" /></xsl:attribute>
-      <xsl:attribute name="rdfs:label"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
-      <xsl:attribute name="hp:nameOfSchool"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="column[@name='Name'] != ''">
+          <xsl:attribute name="rdfs:label"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
+          <xsl:attribute name="hp:nameOfSchool"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="ortId" select="column[@name='Ort_Key']" />
+          <xsl:variable name="ort" select="document('Daten/tblOrte.xml')//table/column[@name='OrtKey'][text() = $ortId]/../column[@name='ORT']" />
+          <xsl:variable name="name" select="concat(column[@name='Schulart'], ' ', $ort)" />
+          <xsl:attribute name="rdfs:label"><xsl:value-of select="$name" /></xsl:attribute>
+          <xsl:attribute name="hp:nameOfSchool"><xsl:value-of select="$name" /></xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:attribute name="hp:schoolType"><xsl:value-of select="column[@name='Schulart']" /></xsl:attribute>
 
       <!-- Places -->
