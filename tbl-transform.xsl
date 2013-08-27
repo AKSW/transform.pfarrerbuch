@@ -33,7 +33,7 @@
       xmlns:rdf="&rdf;"
       xmlns:rdfs="&rdfs;"
       xmlns:foaf="&foaf;"
-      xmlns:schoolattending="&schoolattending;"
+      xmlns:attendingschool="&attendingschool;"
       xmlns:person="&person;"
       xmlns:place="&place;"
       xmlns:position="&position;"
