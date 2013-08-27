@@ -231,7 +231,7 @@
       </xsl:call-template>
     </xsl:element>
     <xsl:element name="hp:Event">
-      <xsl:attribute name="rdf:about">&attendingSchool;<xsl:value-of select="column[@name='Key_Schulbesuch']" /></xsl:attribute>
+      <xsl:attribute name="rdf:about">&attendingschool;<xsl:value-of select="column[@name='Key_Schulbesuch']" /></xsl:attribute>
       <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkung']" /></xsl:attribute>
       <xsl:attribute name="hp:graduation"><xsl:value-of select="column[@name='Abschluss']" /></xsl:attribute>
       <xsl:call-template name="date">
