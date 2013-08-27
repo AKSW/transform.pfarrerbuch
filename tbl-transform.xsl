@@ -153,7 +153,7 @@
     <xsl:element name="hp:Place">
       <xsl:attribute name="rdf:about">&place;<xsl:value-of select="column[@name='OrtKey']" /></xsl:attribute>
       <xsl:attribute name="rdfs:label"><xsl:value-of select="column[@name='ORT']" /></xsl:attribute>
-      <xsl:attribute name="hp:place"><xsl:value-of select="column[@name='ORT']" /></xsl:attribute>
+      <xsl:attribute name="hp:nameOfPlace"><xsl:value-of select="column[@name='ORT']" /></xsl:attribute>
       <xsl:attribute name="hp:district"><xsl:value-of select="column[@name='KREIS']" /></xsl:attribute>
       <xsl:attribute name="hp:district1952"><xsl:value-of select="column[@name='KREIS_1952']" /></xsl:attribute>
       <xsl:attribute name="hp:ah1875"><xsl:value-of select="column[@name='AH_1875']" /></xsl:attribute>
