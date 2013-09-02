@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Exported with HyperCard script written by natanael -->
+
 <!DOCTYPE rdf:RDF [
 <!ENTITY attendingschool "http://pfarrerbuch.de/attendingSchool/">
 <!ENTITY hp "http://purl.org/vok/hp/">
@@ -204,7 +204,7 @@
     </xsl:element>
     <xsl:element name="hp:Event">
       <xsl:attribute name="rdf:about">&staffing;<xsl:value-of select="column[@name='Key_Stellenbesetzung']" /></xsl:attribute>
-      <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkung']" /></xsl:attribute>
+      <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkungen']" /></xsl:attribute>
       <xsl:call-template name="date">
         <xsl:with-param name="year" select="column[@name='Jahr_Beginn']" />
         <xsl:with-param name="property">hp:start</xsl:with-param>
