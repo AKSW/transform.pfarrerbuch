@@ -276,9 +276,9 @@
     <xsl:param name="parent"/>
     <xsl:param name="gender"/>
     <xsl:param name="property"/>
-    <xsl:element name="{$property}">
-      <xsl:choose>
-        <xsl:when test="$parent != 9631">
+    <xsl:choose>
+      <xsl:when test="$parent != 9631">
+        <xsl:element name="{$property}">
           <xsl:element name="foaf:Person">
             <xsl:attribute name="rdf:about">&person;<xsl:value-of select="$parent"/></xsl:attribute>
             <xsl:attribute name="foaf:gender"><xsl:value-of select="$gender"/></xsl:attribute>
@@ -288,23 +288,23 @@
               </xsl:element>
             </xsl:element>
           </xsl:element>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:element>
+        </xsl:element>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="place">
     <xsl:param name="place"/>
     <xsl:param name="property"/>
-    <xsl:element name="{$property}">
-      <xsl:choose>
-        <xsl:when test="$place != 5693">
+    <xsl:choose>
+      <xsl:when test="$place != 5693 and $place != ''">
+        <xsl:element name="{$property}">
           <xsl:element name="hp:Place">
             <xsl:attribute name="rdf:about">&place;<xsl:value-of select="$place"/></xsl:attribute>
           </xsl:element>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:element>
+        </xsl:element>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="position">
@@ -329,30 +329,34 @@
     <xsl:param name="year"/>
     <xsl:param name="day"/>
     <xsl:param name="property"/>
-    <xsl:element name="{$property}">
-      <xsl:choose>
-        <xsl:when test="$year != '' and $year != 0">
+    <xsl:choose>
+      <xsl:when test="($year != '' and $year != 0) or ($day != '' and $day != 0)">
+        <xsl:element name="{$property}">
           <xsl:choose>
-            <xsl:when test="$day != '' and $day != 0">
-              <xsl:attribute name="rdf:datatype">date</xsl:attribute>
-              <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+            <xsl:when test="$year != '' and $year != 0">
+              <xsl:choose>
+                <xsl:when test="$day != '' and $day != 0">
+                  <xsl:attribute name="rdf:datatype">date</xsl:attribute>
+                  <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:attribute name="rdf:datatype">gYear</xsl:attribute>
+                  <xsl:value-of select="$year"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:attribute name="rdf:datatype">gYear</xsl:attribute>
-              <xsl:value-of select="$year"/>
+              <xsl:choose>
+                <xsl:when test="$day != '' and $day != 0">
+                  <xsl:attribute name="rdf:datatype">gMonthDay</xsl:attribute>
+                  <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                </xsl:when>
+              </xsl:choose>
             </xsl:otherwise>
           </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:choose>
-            <xsl:when test="$day != '' and $day != 0">
-              <xsl:attribute name="rdf:datatype">gMonthDay</xsl:attribute>
-              <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:element>
+        </xsl:element>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
