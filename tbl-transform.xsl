@@ -12,14 +12,16 @@
 <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 <!ENTITY xsl "http://www.w3.org/1999/XSL/Transform">
 <!ENTITY str "http://exslt.org/strings">
 ]>
 <xsl:stylesheet
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xsl="&xsl;"
   xmlns:hp="&hp;"
   xmlns:rdf="&rdf;"
   xmlns:rdfs="&rdfs;"
+  xmlns:xsd="&xsd;"
   xmlns:str="&str;"
   xmlns:foaf="&foaf;"
   version="1.0"
@@ -38,6 +40,7 @@
       xmlns:place="&place;"
       xmlns:position="&position;"
       xmlns:school="&school;"
+      xmlns:xsd="&xsd;"
       xmlns:staffing="&staffing;"
       >
       <xsl:apply-templates select="database"/>
@@ -336,11 +339,11 @@
             <xsl:when test="$year != '' and $year != 0">
               <xsl:choose>
                 <xsl:when test="$day != '' and $day != 0">
-                  <xsl:attribute name="rdf:datatype">date</xsl:attribute>
+                  <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
                   <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:attribute name="rdf:datatype">gYear</xsl:attribute>
+                  <xsl:attribute name="rdf:datatype">&xsd;gYear</xsl:attribute>
                   <xsl:value-of select="$year"/>
                 </xsl:otherwise>
               </xsl:choose>
@@ -348,7 +351,7 @@
             <xsl:otherwise>
               <xsl:choose>
                 <xsl:when test="$day != '' and $day != 0">
-                  <xsl:attribute name="rdf:datatype">gMonthDay</xsl:attribute>
+                  <xsl:attribute name="rdf:datatype">&xsd;gMonthDay</xsl:attribute>
                   <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
                 </xsl:when>
               </xsl:choose>
