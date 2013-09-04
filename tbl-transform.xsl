@@ -224,7 +224,7 @@
       </xsl:element>
       <xsl:element name="rdf:predicate">
         <xsl:element name="rdfs:Resource">
-          <xsl:attribute name="rdf:about">hp:hasPosition</xsl:attribute>
+          <xsl:attribute name="rdf:about">&hp;hasPosition</xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:object">
@@ -265,7 +265,7 @@
       </xsl:element>
       <xsl:element name="rdf:predicate">
         <xsl:element name="rdfs:Resource">
-          <xsl:attribute name="rdf:about">hp:attendedSchool</xsl:attribute>
+          <xsl:attribute name="rdf:about">&hp;attendedSchool</xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:object">
