@@ -55,7 +55,7 @@
   <xsl:template match="table[@name='tblPersonen']">
     <xsl:element name="foaf:Person">
       <xsl:attribute name="rdf:about">&person;<xsl:value-of select="column[@name='Key_Personen']" /></xsl:attribute>
-      <xsl:attribute name="rdfs:label"><xsl:value-of select="concat(column[@name='Vorname'], ' ', column[@name='Name'], ' (', column[@name='Geburtsjahr'], ')')" /></xsl:attribute>
+      <xsl:attribute name="rdfs:label"><xsl:value-of select="concat(column[@name='Vorname'], ' ', column[@name='Name'], ' (*', column[@name='Geburtsjahr'], ' †', column[@name='Todesjahr'], ')')" /></xsl:attribute>
       <xsl:attribute name="foaf:name"><xsl:value-of select="concat(column[@name='Vorname'], ' ', column[@name='Name'])" /></xsl:attribute>
       <xsl:attribute name="foaf:lastName"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
       <xsl:attribute name="foaf:firstName"><xsl:value-of select="column[@name='Vorname']" /></xsl:attribute>
@@ -208,6 +208,7 @@
     <xsl:element name="hp:Event">
       <xsl:attribute name="rdf:about">&staffing;<xsl:value-of select="column[@name='Key_Stellenbesetzung']" /></xsl:attribute>
       <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkungen']" /></xsl:attribute>
+      <xsl:attribute name="rdfs:label"><xsl:value-of select="concat('Stelle (', column[@name='Jahr_Beginn'], '-', column[@name='Jahr_Ende'], ')')" /></xsl:attribute>
       <xsl:call-template name="date">
         <xsl:with-param name="year" select="column[@name='Jahr_Beginn']" />
         <xsl:with-param name="property">hp:start</xsl:with-param>
@@ -246,6 +247,7 @@
     </xsl:element>
     <xsl:element name="hp:Event">
       <xsl:attribute name="rdf:about">&attendingschool;<xsl:value-of select="column[@name='Key_Schulbesuch']" /></xsl:attribute>
+      <xsl:attribute name="rdfs:label"><xsl:value-of select="concat('Ausbildung (', column[@name='Jahr_Beginn'], '-', column[@name='Jahr_Ende'], ')')" /></xsl:attribute>
       <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkung']" /></xsl:attribute>
       <xsl:attribute name="hp:graduation"><xsl:value-of select="column[@name='Abschluss']" /></xsl:attribute>
       <xsl:call-template name="date">
