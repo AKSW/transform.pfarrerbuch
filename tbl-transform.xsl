@@ -218,17 +218,17 @@
         <xsl:with-param name="property">hp:end</xsl:with-param>
       </xsl:call-template>
       <xsl:element name="rdf:subject">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&person;<xsl:value-of select="column[@name='Person_Key']" /></xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:predicate">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&hp;hasPosition</xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:object">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&position;<xsl:value-of select="column[@name='Stellen_Key']" /></xsl:attribute>
         </xsl:element>
       </xsl:element>
@@ -259,17 +259,17 @@
         <xsl:with-param name="property">hp:end</xsl:with-param>
       </xsl:call-template>
       <xsl:element name="rdf:subject">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&person;<xsl:value-of select="column[@name='Person_Key']" /></xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:predicate">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&hp;attendedSchool</xsl:attribute>
         </xsl:element>
       </xsl:element>
       <xsl:element name="rdf:object">
-        <xsl:element name="rdfs:Resource">
+        <xsl:element name="rdf:Description">
           <xsl:attribute name="rdf:about">&school;<xsl:value-of select="column[@name='Schule_Key']" /></xsl:attribute>
         </xsl:element>
       </xsl:element>
@@ -304,7 +304,7 @@
     <xsl:choose>
       <xsl:when test="$place != 5693 and $place != ''">
         <xsl:element name="{$property}">
-          <xsl:element name="hp:Place">
+          <xsl:element name="rdf:Description">
             <xsl:attribute name="rdf:about">&place;<xsl:value-of select="$place"/></xsl:attribute>
           </xsl:element>
         </xsl:element>
@@ -315,7 +315,7 @@
   <xsl:template name="position">
     <xsl:param name="position"/>
     <xsl:element name="hp:hasPosition">
-      <xsl:element name="hp:Position">
+      <xsl:element name="rdf:Description">
         <xsl:attribute name="rdf:about">&position;<xsl:value-of select="$position"/></xsl:attribute>
       </xsl:element>
     </xsl:element>
@@ -324,7 +324,7 @@
   <xsl:template name="school">
     <xsl:param name="school"/>
     <xsl:element name="hp:attendedSchool">
-      <xsl:element name="hp:School">
+      <xsl:element name="rdf:Description">
         <xsl:attribute name="rdf:about">&school;<xsl:value-of select="$school"/></xsl:attribute>
       </xsl:element>
     </xsl:element>
