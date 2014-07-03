@@ -2,7 +2,7 @@
 
 <!DOCTYPE rdf:RDF [
 <!ENTITY attendingschool "http://pfarrerbuch.de/attendingSchool/">
-<!ENTITY hp "http://purl.org/vok/hp/">
+<!ENTITY hp "http://purl.org/voc/hp/">
 <!ENTITY pfarrer "http://pfarrerbuch.de/">
 <!ENTITY person "http://pfarrerbuch.de/person/">
 <!ENTITY place "http://pfarrerbuch.de/place/">
