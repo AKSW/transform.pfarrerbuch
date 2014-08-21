@@ -4,7 +4,9 @@
 
   <xsl:template match="@*">
     <xsl:if test="string-length(.)!=0">
+    <xsl:if test=".!='NULL'">
       <xsl:copy />
+    </xsl:if>
     </xsl:if>
   </xsl:template>
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE rdf:RDF [
-<!ENTITY attendingschool "http://pfarrerbuch.de/attendingSchool/">
+<!ENTITY attendingschool "http://pfarrerbuch.comiles.eu/sachsen/schulbesuch/">
 <!ENTITY hp "http://purl.org/voc/hp/">
-<!ENTITY pfarrer "http://pfarrerbuch.de/">
-<!ENTITY person "http://pfarrerbuch.de/person/">
-<!ENTITY place "http://pfarrerbuch.de/place/">
-<!ENTITY position "http://pfarrerbuch.de/position/">
-<!ENTITY school "http://pfarrerbuch.de/school/">
-<!ENTITY staffing "http://pfarrerbuch.de/staffing/">
+<!ENTITY pfarrer "http://pfarrerbuch.comiles.eu/">
+<!ENTITY person "http://pfarrerbuch.comiles.eu/sachsen/person/">
+<!ENTITY place "http://pfarrerbuch.comiles.eu/sachsen/ort/">
+<!ENTITY position "http://pfarrerbuch.comiles.eu/sachsen/stelle/">
+<!ENTITY school "http://pfarrerbuch.comiles.eu/sachsen/schule/">
+<!ENTITY staffing "http://pfarrerbuch.comiles.eu/sachsen/stellenbesetzung/">
 <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
@@ -282,7 +282,7 @@
     <xsl:param name="gender"/>
     <xsl:param name="property"/>
     <xsl:choose>
-      <xsl:when test="$parent != 9631">
+      <xsl:when test="$parent != 19"><!-- war 9631 -->
         <xsl:element name="{$property}">
           <xsl:element name="foaf:Person">
             <xsl:attribute name="rdf:about">&person;<xsl:value-of select="$parent"/></xsl:attribute>
@@ -302,7 +302,7 @@
     <xsl:param name="place"/>
     <xsl:param name="property"/>
     <xsl:choose>
-      <xsl:when test="$place != 5693 and $place != ''">
+      <xsl:when test="$place != 5596 and $place != ''"><!-- war 5693 -->
         <xsl:element name="{$property}">
           <xsl:element name="rdf:Description">
             <xsl:attribute name="rdf:about">&place;<xsl:value-of select="$place"/></xsl:attribute>
@@ -335,12 +335,12 @@
     <xsl:param name="day"/>
     <xsl:param name="property"/>
     <xsl:choose>
-      <xsl:when test="($year != '' and $year != 0) or ($day != '' and $day != 0)">
+      <xsl:when test="($year != '' and $year != 0 and $year != 'NULL') or ($day != '' and $day != 0 and $day != 'NULL')">
         <xsl:element name="{$property}">
           <xsl:choose>
-            <xsl:when test="$year != '' and $year != 0">
+            <xsl:when test="$year != '' and $year != 0 and $year != 'NULL'">
               <xsl:choose>
-                <xsl:when test="$day != '' and $day != 0">
+                <xsl:when test="$day != '' and $day != 0 and $day != 'NULL'">
                   <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
                   <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
                 </xsl:when>
@@ -352,7 +352,7 @@
             </xsl:when>
             <xsl:otherwise>
               <xsl:choose>
-                <xsl:when test="$day != '' and $day != 0">
+                <xsl:when test="$day != '' and $day != 0 and $day != 'NULL'">
                   <xsl:attribute name="rdf:datatype">&xsd;gMonthDay</xsl:attribute>
                   <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
                 </xsl:when>
