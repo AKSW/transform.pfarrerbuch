@@ -15,68 +15,67 @@ class Validate:
     def validate(self):
         #print(dayTester.source())
         #print(yearTester.source())
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Geburtsjahr"]/text()'):
-            if (!self.yearTest(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Geburtstag"]/text()'):
-            if (text != 'NULL' and not dayTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Tauftag"]/text()'):
-            if (text != 'NULL' and not dayTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Todesjahr"]/text()'):
-            if (text != 'NULL' and not yearTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Begräbnistag"]/text()'):
-            if (text != 'NULL' and not dayTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Ordinationsjahr"]/text()'):
-            if (text != 'NULL' and not yearTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Ordinationstag"]/text()'):
-            if (text != 'NULL' and not dayTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Emeritierungsjahr"]/text()'):
-            if (text != 'NULL' and not yearTester.match(text)):
-                print(text)
-        for text in self.tree.xpath('/pma_xml_export/database/table/column[@name="Emeritierungstag"]/text()'):
-            if (text != 'NULL' and not dayTester.match(text)):
-                print(text)
-        testElemente("Emeritierungstag", "")
+        elements = {
+                "Geburtsjahr": "year",
+                "Geburtstag": "day",
+                "Tauftag": "day",
+                "Todesjahr": "year",
+                "Begräbnistag": "day",
+                "Ordinationsjahr": "year",
+                "Ordinationstag": "day",
+                "Emeritierungsjahr": "year",
+                "Emeritierungstag": "day"
+                }
 
-    def testElement(self, element, test):
-        for element in self.tree.xpath('/pma_xml_export/database/table/column[@name="'+element+'"]/'):
-            if (not dayTest(element.text())):
-                print(element.text())
+        idElement = "Key_Personen"
+
+        for element in elements:
+            self.testElement(element, elements[element])
+
+    def testElement(self, elementName, test):
+        for element in self.tree.xpath('/pma_xml_export/database/table[@name="tblPersonen"]/column[@name="'+elementName+'"]'):
+            if (test == "day"):
+                if (not self.dayTest(element.text)):
+                    print("'" + element.text + "' is not a day in " + elementName)
+            elif (test == "year"):
+                if (not self.yearTest(element.text)):
+                    print("'" + element.text + "' is not a year in " + elementName)
 
     def yearTest(self, year):
         if (year == 'NULL'):
             return True
-        year_expression = VerEx()
-        yearTester = (year_expression.
-                start_of_line().
-                range(0,9).
-                range(0,9).
-                range(0,9).
-                range(0,9).
-                end_of_line()
-                )
+        if (len(year) != 4):
+            return False
+        if (not year.isdigit()):
+            return False
+        if (int(year) > 2014 or int(year) < 1400):
+            return False
         return True
 
     def dayTest(self, day):
         if (day == 'NULL'):
             return True
-        day_expression = VerEx()
-        dayTester = (day_expression.
-                start_of_line().
-                range(0,9).
-                range(0,9).
-                any('.').
-                range(0,9).
-                range(0,9).
-                any('.').
-                end_of_line()
-                )
+        parts = day.split('.')
+        if (len(parts) < 2 or len(parts) > 3):
+            return False
+        if (len(parts) == 3 and len(parts[2]) != 0):
+            return False
+        if (not parts[0].isdigit()):
+            if (not parts[0].lower() == 'x' and not parts[0].lower() == 'xx'):
+                return False
+        elif (int(parts[0]) < 1 or int(parts[0]) > 31):
+            return False
+        if (not parts[1].isdigit()):
+            if (not parts[1].lower() == 'x' and not parts[1].lower() == 'xx'):
+                return False
+        elif (int(parts[1]) < 1 or int(parts[1]) > 12):
+            return False
+        if (parts[0].isdigit() and parts[1].isdigit()):
+            if (int(parts[1]) == 2 and int(parts[0]) > 29):
+                return False
+            months = [4,6,9,11]
+            if (int(parts[1]) in months and int(parts[0]) > 30):
+                return False
         return True
 
     def dateTest(self, date):
