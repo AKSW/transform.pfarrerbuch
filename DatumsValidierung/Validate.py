@@ -15,7 +15,7 @@ class Validate:
     def validate(self):
         #print(dayTester.source())
         #print(yearTester.source())
-        elements = {
+        self.elements = {
                 "Geburtsjahr": "year",
                 "Geburtstag": "day",
                 "Tauftag": "day",
@@ -27,19 +27,34 @@ class Validate:
                 "Emeritierungstag": "day"
                 }
 
-        idElement = "Key_Personen"
+        self.idElement = "Key_Personen"
+        self.firstnameElement = "Vorname"
+        self.lastnameElement = "Nachname"
 
-        for element in elements:
-            self.testElement(element, elements[element])
+        self.testElements()
 
-    def testElement(self, elementName, test):
-        for element in self.tree.xpath('/pma_xml_export/database/table[@name="tblPersonen"]/column[@name="'+elementName+'"]'):
-            if (test == "day"):
-                if (not self.dayTest(element.text)):
-                    print("'" + element.text + "' is not a day in " + elementName)
-            elif (test == "year"):
-                if (not self.yearTest(element.text)):
-                    print("'" + element.text + "' is not a year in " + elementName)
+    def testElements(self):
+        for element in self.tree.xpath('/pma_xml_export/database/table[@name="tblPersonen"]'):
+            idElement = element.xpath('column[@name="'+self.idElement+'"]')[0]
+            firstnameElements = element.xpath('column[@name="'+self.firstnameElement+'"]')
+            lastnameElements = element.xpath('column[@name="'+self.lastnameElement+'"]')
+            if (len(firstnameElements) > 0):
+                firstname = firstnameElements[0].text
+            else:
+                firstname = '<unbekannt>'
+            if (len(lastnameElements) > 0):
+                lastname = lastnameElements[0].text
+            else:
+                lastname = '<unbekannt>'
+            id = lastname + "," + firstname + " (id=" + idElement.text + ")"
+            for elementName in self.elements:
+                subElement = element.xpath('column[@name="'+elementName+'"]')[0]
+                if (self.elements[elementName] == "day"):
+                    if (not self.dayTest(subElement.text)):
+                        print('"' + subElement.text + '" ist kein Tag in "' + elementName + '" für ' + id)
+                elif (self.elements[elementName] == "year"):
+                    if (not self.yearTest(subElement.text)):
+                        print('"' + subElement.text + '" ist kein Jahr in "' + elementName + '" für ' + id)
 
     def yearTest(self, year):
         if (year == 'NULL'):
@@ -76,6 +91,9 @@ class Validate:
             months = [4,6,9,11]
             if (int(parts[1]) in months and int(parts[0]) > 30):
                 return False
+        if (parts[0].isdigit() and (parts[1].lower() == 'x' or parts[1].lower() == 'xx')):
+            # catch: 05.XX.
+            return False
         return True
 
     def dateTest(self, date):
