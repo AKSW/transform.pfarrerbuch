@@ -29,7 +29,9 @@ class Validate:
 
         self.idElement = "Key_Personen"
         self.firstnameElement = "Vorname"
-        self.lastnameElement = "Nachname"
+        self.lastnameElement = "Name"
+        self.birthElement = "Geburtsjahr"
+        self.deathElement = "Todesjahr"
 
         self.testElements()
 
@@ -38,15 +40,21 @@ class Validate:
             idElement = element.xpath('column[@name="'+self.idElement+'"]')[0]
             firstnameElements = element.xpath('column[@name="'+self.firstnameElement+'"]')
             lastnameElements = element.xpath('column[@name="'+self.lastnameElement+'"]')
+            birthElements = element.xpath('column[@name="'+self.birthElement+'"]')
+            deathElements = element.xpath('column[@name="'+self.deathElement+'"]')
+            firstname = '<unbekannt>'
+            lastname = '<unbekannt>'
+            geb = ''
+            tot = ''
             if (len(firstnameElements) > 0):
                 firstname = firstnameElements[0].text
-            else:
-                firstname = '<unbekannt>'
             if (len(lastnameElements) > 0):
                 lastname = lastnameElements[0].text
-            else:
-                lastname = '<unbekannt>'
-            id = lastname + "," + firstname + " (id=" + idElement.text + ")"
+            if (len(birthElements) > 0 and birthElements[0].text != "NULL"):
+                geb = birthElements[0].text
+            if (len(deathElements) > 0 and deathElements[0].text != "NULL"):
+                tot = deathElements[0].text
+            id = lastname + "," + firstname + " (*" + geb + ", +" + tot + "; id=" + idElement.text + ")"
             for elementName in self.elements:
                 subElement = element.xpath('column[@name="'+elementName+'"]')[0]
                 if (self.elements[elementName] == "day"):
@@ -59,11 +67,11 @@ class Validate:
     def yearTest(self, year):
         if (year == 'NULL'):
             return True
-        if (len(year) != 4):
+        if (len(year) != 4 and len(year) != 2):
             return False
         if (not year.isdigit()):
             return False
-        if (int(year) > 2014 or int(year) < 1400):
+        if (len(year) == 4 and (int(year) > 2014 or int(year) < 1400)):
             return False
         return True
 
@@ -78,12 +86,12 @@ class Validate:
         if (not parts[0].isdigit()):
             if (not parts[0].lower() == 'x' and not parts[0].lower() == 'xx'):
                 return False
-        elif (int(parts[0]) < 1 or int(parts[0]) > 31):
+        elif (int(parts[0]) < 0 or int(parts[0]) > 31):
             return False
         if (not parts[1].isdigit()):
             if (not parts[1].lower() == 'x' and not parts[1].lower() == 'xx'):
                 return False
-        elif (int(parts[1]) < 1 or int(parts[1]) > 12):
+        elif (int(parts[1]) < 0 or int(parts[1]) > 12):
             return False
         if (parts[0].isdigit() and parts[1].isdigit()):
             if (int(parts[1]) == 2 and int(parts[0]) > 29):
@@ -91,7 +99,7 @@ class Validate:
             months = [4,6,9,11]
             if (int(parts[1]) in months and int(parts[0]) > 30):
                 return False
-        if (parts[0].isdigit() and (parts[1].lower() == 'x' or parts[1].lower() == 'xx')):
+        if (parts[0].isdigit() and (parts[1].lower() == 'x' or parts[1].lower() == 'xx' or (parts[1].isdigit() and int(parts[1]) == 0))):
             # catch: 05.XX.
             return False
         return True
