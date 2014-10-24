@@ -102,13 +102,13 @@
         <xsl:with-param name="property">hp:dateOfDeath</xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="date">
-        <xsl:with-param name="day" select="column[@name='Begraebnistag']" />
+        <xsl:with-param name="day" select="column[@name='Begraebnistag' or @name='Begräbnistag']" />
         <xsl:with-param name="property">hp:dayOfFuneral</xsl:with-param>
       </xsl:call-template>
 
       <!-- Places -->
       <xsl:call-template name="place">
-        <xsl:with-param name="place" select="column[@name='Begraebnisort_Key']" />
+        <xsl:with-param name="place" select="column[@name='Begraebnisort_Key' or @name='Begräbnisort_Key']" />
         <xsl:with-param name="property">hp:burialPlace</xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="place">
@@ -341,8 +341,17 @@
             <xsl:when test="$year != '' and $year != 0 and $year != 'NULL'">
               <xsl:choose>
                 <xsl:when test="$day != '' and $day != 0 and $day != 'NULL'">
-                  <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
-                  <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                  <!-- case, that $day = (X)X.MM -->
+                  <xsl:choose>
+                    <xsl:when test="str:tokenize($day,'.')[1] = 'x' or str:tokenize($day,'.')[1] = 'X' or str:tokenize($day,'.')[1] = 'xx' or str:tokenize($day,'.')[1] = 'XX' or str:tokenize($day,'.')[1] = '0' or str:tokenize($day,'.')[1] = '00'">
+                      <xsl:attribute name="rdf:datatype">&xsd;gYearMonth</xsl:attribute>
+                      <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2])"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
+                      <xsl:value-of select="concat($year,'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:attribute name="rdf:datatype">&xsd;gYear</xsl:attribute>
@@ -353,8 +362,16 @@
             <xsl:otherwise>
               <xsl:choose>
                 <xsl:when test="$day != '' and $day != 0 and $day != 'NULL'">
-                  <xsl:attribute name="rdf:datatype">&xsd;gMonthDay</xsl:attribute>
-                  <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                  <xsl:choose>
+                    <xsl:when test="string-length($day) > 6">
+                      <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
+                      <xsl:value-of select="concat(str:tokenize($day,'.')[3],'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:attribute name="rdf:datatype">&xsd;gMonthDay</xsl:attribute>
+                      <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </xsl:when>
               </xsl:choose>
             </xsl:otherwise>
