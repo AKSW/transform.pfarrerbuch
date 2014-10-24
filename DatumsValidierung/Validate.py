@@ -20,6 +20,7 @@ class Validate:
                 "Geburtstag": "day",
                 "Tauftag": "day",
                 "Todesjahr": "year",
+                "Todestag": "day",
                 "Begräbnistag": "day",
                 "Ordinationsjahr": "year",
                 "Ordinationstag": "day",
