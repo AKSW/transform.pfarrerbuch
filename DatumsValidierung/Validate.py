@@ -2,15 +2,19 @@
 
 import sys
 import getopt
-#import elementtree.ElementTree as ET
 from lxml import etree
-from verbal_expressions import VerEx
+import calendar
 
 class Validate:
     def __init__(self, filename):
         self.tree = etree.parse(filename)
         #root = ET.parse(fileName)
         #root = ET.fromstring(s)
+
+    def write(self, outfile):
+        if (outfile != None):
+#            et = etree.ElementTree(self.tree)
+            self.tree.write(outfile)
 
     def validate(self):
         #print(dayTester.source())
@@ -26,6 +30,15 @@ class Validate:
                 "Ordinationstag": "day",
                 "Emeritierungsjahr": "year",
                 "Emeritierungstag": "day"
+                }
+
+        self.dayyear = {
+                "Geburtstag": "Geburtsjahr",
+                "Tauftag": "Geburtsjahr",
+                "Todestag": "Todesjahr",
+                "Begräbnistag": "Todesjahr",
+                "Ordinationstag": "Ordinationsjahr",
+                "Emeritierungstag": "Emeritierungsjahr"
                 }
 
         self.idElement = "Key_Personen"
@@ -59,11 +72,14 @@ class Validate:
             for elementName in self.elements:
                 subElement = element.xpath('column[@name="'+elementName+'"]')[0]
                 if (self.elements[elementName] == "day"):
-                    if (not self.dayTest(subElement.text)):
+                    yearElement = element.xpath('column[@name="'+self.dayyear[elementName]+'"]')[0]
+                    if (not self.dayTest(subElement.text, yearElement.text)):
                         print('"' + subElement.text + '" ist kein Tag in "' + elementName + '" für ' + id)
+                        subElement.text = "NULL"
                 elif (self.elements[elementName] == "year"):
                     if (not self.yearTest(subElement.text)):
                         print('"' + subElement.text + '" ist kein Jahr in "' + elementName + '" für ' + id)
+                        subElement.text = "NULL"
 
     def yearTest(self, year):
         if (year == 'NULL'):
@@ -76,7 +92,7 @@ class Validate:
             return False
         return True
 
-    def dayTest(self, day):
+    def dayTest(self, day, year):
         if (day == 'NULL'):
             return True
         parts = day.split('.')
@@ -97,6 +113,10 @@ class Validate:
         if (parts[0].isdigit() and parts[1].isdigit()):
             if (int(parts[1]) == 2 and int(parts[0]) > 29):
                 return False
+            elif (int(parts[1]) == 2 and int(parts[0]) == 29):
+                if self.yearTest(year) and not calendar.isleap(int(year)):
+                    print("Kein Schaltjahr")
+                    return False
             months = [4,6,9,11]
             if (int(parts[1]) in months and int(parts[0]) > 30):
                 return False
@@ -113,17 +133,22 @@ class Validate:
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv, "i:", ["input"])
+        opts, args = getopt.getopt(argv, "i:o:", ["input", "output"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
 
+    outputFile = None
+
     for o, a in opts:
         if o in ("-i", "--input"):
             inputFile = a
+        if o in ("-o", "--output"):
+            outputFile = a
 
     validate = Validate(inputFile)
     validate.validate()
+    validate.write(outputFile)
 
 def usage():
     print("""
