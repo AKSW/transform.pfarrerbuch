@@ -51,6 +51,10 @@
     <xsl:apply-templates select="table"/>
   </xsl:template>
 
+  <xsl:template match="table">
+      <!-- do nothing just to exclude all other tables -->
+  </xsl:template>
+
   <!-- template for persons table -->
   <xsl:template match="table[@name='tblPersonen']">
     <xsl:element name="foaf:Person">
@@ -61,8 +65,10 @@
       <xsl:attribute name="foaf:firstName"><xsl:value-of select="column[@name='Vorname']" /></xsl:attribute>
       <xsl:attribute name="hp:nameVariant"><xsl:value-of select="column[@name='Namen_Varianten']" /></xsl:attribute>
       <xsl:attribute name="hp:birthName"><xsl:value-of select="column[@name='Geburtsname']" /></xsl:attribute>
-      <xsl:attribute name="rdfs:comment"><xsl:value-of select="column[@name='Bemerkungen']" /></xsl:attribute>
       <xsl:attribute name="hp:isPastor"><xsl:value-of select="column[@name='Kz-Pfarrer']" /></xsl:attribute> <!-- use boolean values (true/false) -->
+      <xsl:element name="rdfs:comment">
+        <xsl:value-of select="column[@name='Bemerkungen']" />
+      </xsl:element>
 
       <!-- Parents -->
       <xsl:call-template name="parent">
@@ -172,13 +178,13 @@
     <xsl:element name="hp:School">
       <xsl:attribute name="rdf:about">&school;<xsl:value-of select="column[@name='Key_Schulen']" /></xsl:attribute>
       <xsl:choose>
-        <xsl:when test="column[@name='Name'] != ''">
+        <xsl:when test="column[@name='Name'] != '' and column[@name='Name'] != 'NULL' ">
           <xsl:attribute name="rdfs:label"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
           <xsl:attribute name="hp:nameOfSchool"><xsl:value-of select="column[@name='Name']" /></xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="ortId" select="column[@name='Ort_Key']" />
-          <xsl:variable name="ort" select="document('Daten/tblOrte.xml')//table/column[@name='OrtKey'][text() = $ortId]/../column[@name='ORT']" />
+          <xsl:variable name="ort" select="//table/column[@name='OrtKey'][text() = $ortId]/../column[@name='ORT']" />
           <xsl:variable name="name" select="concat(column[@name='Schulart'], ' ', $ort)" />
           <xsl:attribute name="rdfs:label"><xsl:value-of select="$name" /></xsl:attribute>
           <xsl:attribute name="hp:nameOfSchool"><xsl:value-of select="$name" /></xsl:attribute>
@@ -362,16 +368,8 @@
             <xsl:otherwise>
               <xsl:choose>
                 <xsl:when test="$day != '' and $day != 0 and $day != 'NULL'">
-                  <xsl:choose>
-                    <xsl:when test="string-length($day) > 6">
-                      <xsl:attribute name="rdf:datatype">&xsd;date</xsl:attribute>
-                      <xsl:value-of select="concat(str:tokenize($day,'.')[3],'-',str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
-                    </xsl:when>
-                    <xsl:otherwise>
                       <xsl:attribute name="rdf:datatype">&xsd;gMonthDay</xsl:attribute>
                       <xsl:value-of select="concat(str:tokenize($day,'.')[2],'-',str:tokenize($day,'.')[1])"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
                 </xsl:when>
               </xsl:choose>
             </xsl:otherwise>

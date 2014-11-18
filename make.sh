@@ -15,5 +15,5 @@ do
     rapper -i 'rdfxml' -o 'turtle' ${newrdf} > ${newttl}
     files="${files} ${newttl}"
 done
-cat ${files} > all.ttl
-rapper -o 'rdfxml' -i 'turtle' all.ttl > all.rdf
+#cat ${files} > all.ttl
+#rapper -o 'rdfxml' -i 'turtle' all.ttl > all.rdf
