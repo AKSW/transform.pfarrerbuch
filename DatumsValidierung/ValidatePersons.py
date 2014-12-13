@@ -84,7 +84,8 @@ class Validate:
     def yearTest(self, year):
         if (year == 'NULL'):
             return True
-        if (len(year) != 4 and len(year) != 2):
+        #if (len(year) != 4 and len(year) != 2):
+        if (len(year) != 4):
             return False
         if (not year.isdigit()):
             return False
