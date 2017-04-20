@@ -1,0 +1,195 @@
+###########################
+# Places Mapping
+###########################
+
+<#Places1TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+select distinct Geb_Ort from BioTabelle1;
+""".
+<#Places1TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places1TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Geb_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Geb_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places2TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+Select distinct Ordination_Ort from BioTabelle1;
+""".
+<#Places2TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places2TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Ordination_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Ordination_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Ordination_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+	
+<#Places3TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+select distinct Berufung1_Ort from BioTabelle1;
+""".
+<#Places3TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places3TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung1_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung1_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung1_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places4TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+Select distinct Berufung2_Ort from BioTabelle1;
+""".
+<#Places4TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places4TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung2_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung2_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung2_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places5TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+select distinct Berufung3_Ort from BioTabelle1;
+""".
+<#Places5TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places5TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung3_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung3_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung3_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places6TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+Select distinct Berufung4_Ort from BioTabelle1;
+""".
+<#Places6TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places6TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung4_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung4_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung4_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places7TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+Select distinct Berufung5_Ort from BioTabelle1;
+""".
+<#Places7TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places7TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung5_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung5_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung5_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+
+<#Places8TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """
+Select distinct Berufung6_Ort from BioTabelle1;
+""".
+<#Places8TriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#Places8TableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung6_Ort\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/vok/hp/Place>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/nameOfPlace>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung6_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"Berufung6_Ort\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].

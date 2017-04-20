@@ -1,0 +1,66 @@
+###########################
+# School Mapping
+###########################
+
+<#SchoolTableView> <http://www.w3.org/ns/r2rml#sqlQuery> """Select distinct school from (Select IIf(InStr(Ausbildung, ";")>0, left(Ausbildung,InStr(Ausbildung, ";")-1), Ausbildung) as school from BioTabelle1) UNION ( 
+Select IIf(NOT InStr(Ausbildung, ";")=0, Mid(Ausbildung, InStr(Ausbildung, ";")+2, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0, InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")-InStr(Ausbildung, ";")-2, Len(Ausbildung))), NULL) as school from BioTabelle1) UNION (
+Select IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") -  InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")-2, Len(Ausbildung))), NULL), NULL) as school from BioTabelle1) UNION (
+Select IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0,IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";") =0,InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";") -  InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")-2, Len(Ausbildung))), NULL), NULL), NULL) as school from BioTabelle1) UNION (
+Select IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";") + 1, Ausbildung, ";")=0,IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";") -  InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") + 1, Ausbildung, ";")-1, Len(Ausbildung))), NULL), NULL), NULL), NULL) as school from BioTabelle1) UNION (
+Select IIf(NOT InStr(Ausbildung, ";")=0, 
+	IIf(NOT InStr(InStr(Ausbildung, ";") + 1, Ausbildung, ";")=0,
+		IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, 
+			IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+				IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+					Mid(Ausbildung, InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1 , Ausbildung, ";")+2, 
+						IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+							InStr(InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";") - InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")-1, Len(Ausbildung))), NULL), NULL), NULL), NULL), NULL) as school from BioTabelle1);
+""".
+
+<#SchoolsTriplesMap>
+    <http://www.w3.org/ns/r2rml#logicalTable> <#SchoolTableView>;
+    <http://www.w3.org/ns/r2rml#subjectMap> [ 
+        <http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/schule/{\"school\"}";
+        <http://www.w3.org/ns/r2rml#class> <http://purl.org/voc/hp/School>;
+    ];
+    <http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://purl.org/voc/hp/nameOfSchool>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"school\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ];
+	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+        <http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
+        <http://www.w3.org/ns/r2rml#objectMap> [
+			<http://www.w3.org/ns/r2rml#column> "\"school\"";
+			<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+		];
+    ].
+	
+<#SchoolPersonTableView> <http://www.w3.org/ns/r2rml#sqlQuery> """select * from (Select distinct id, school from (Select id, IIf(InStr(Ausbildung, ";")>0, left(Ausbildung,InStr(Ausbildung, ";")-1), Ausbildung) as school from BioTabelle1) UNION ( 
+Select id, IIf(NOT InStr(Ausbildung, ";")=0, Mid(Ausbildung, InStr(Ausbildung, ";")+2, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0, InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")-InStr(Ausbildung, ";")-2, Len(Ausbildung))), NULL) as school from BioTabelle1) UNION (
+Select id, IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") -  InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")-2, Len(Ausbildung))), NULL), NULL) as school from BioTabelle1) UNION (
+Select id, IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";")=0,IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";") =0,InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";") -  InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")-2, Len(Ausbildung))), NULL), NULL), NULL) as school from BioTabelle1) UNION (
+Select id, IIf(NOT InStr(Ausbildung, ";")=0, IIf(NOT InStr(InStr(Ausbildung, ";") + 1, Ausbildung, ";")=0,IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")=0, Mid(Ausbildung, InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+2, IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";") -  InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") + 1, Ausbildung, ";")-1, Len(Ausbildung))), NULL), NULL), NULL), NULL) as school from BioTabelle1) UNION (
+Select id, IIf(NOT InStr(Ausbildung, ";")=0, 
+	IIf(NOT InStr(InStr(Ausbildung, ";") + 1, Ausbildung, ";")=0,
+		IIf(NOT InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")=0, 
+			IIf(NOT InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+				IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+					Mid(Ausbildung, InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1 , Ausbildung, ";")+2, 
+						IIf(NOT InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")=0, 
+							InStr(InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";")+1, Ausbildung, ";") - InStr(InStr(InStr(InStr(InStr(Ausbildung, ";")+1, Ausbildung, ";") + 1, Ausbildung, ";") + 1, Ausbildung, ";")+1, Ausbildung, ";")-1, Len(Ausbildung))), NULL), NULL), NULL), NULL), NULL) as school from BioTabelle1)) as s where s.school is not null;
+""".
+
+<#SchoolsPersonTriplesMap>
+<http://www.w3.org/ns/r2rml#logicalTable> <#SchoolPersonTableView>;
+<http://www.w3.org/ns/r2rml#subjectMap> [
+	<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"ID\"}";
+];
+<http://www.w3.org/ns/r2rml#predicateObjectMap> [
+	<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/attendedSchool>;
+	<http://www.w3.org/ns/r2rml#objectMap> [
+		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/schule/{\"school\"}";
+	];
+].
