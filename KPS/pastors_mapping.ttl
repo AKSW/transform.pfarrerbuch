@@ -129,6 +129,7 @@
 				<http://www.w3.org/ns/r2rml#objectMap>
 				[
 					<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
+					smap:requiredPattern """^[^°]*$""" ;
 				] ;
 				<http://www.w3.org/ns/r2rml#predicate>	<http://purl.org/vok/hp/birthPlace>
 			] ;
@@ -137,6 +138,7 @@
 				<http://www.w3.org/ns/r2rml#objectMap>
 				[
 					<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Sterb_Ort\"}";
+					smap:requiredPattern """^[^°]*$""" ;
 				] ;
 				<http://www.w3.org/ns/r2rml#predicate>	<http://purl.org/vok/hp/placeOfDeath>
 			] ;
