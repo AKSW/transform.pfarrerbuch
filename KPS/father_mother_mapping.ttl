@@ -7,31 +7,31 @@
 
 <#VaterTriplesMap>
 	<http://www.w3.org/ns/r2rml#logicalTable> <#VaterTableView>;
-	<http://www.w3.org/ns/r2rml#subjectMap> 
+	<http://www.w3.org/ns/r2rml#subjectMap>
 	[
 		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>	
-		[ 
+		<http://www.w3.org/ns/r2rml#objectMap>
+		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/father>
 	] ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>	
-		[ 
+		<http://www.w3.org/ns/r2rml#objectMap>
+		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] .
-	
+
 ###########################
 # Mother Mapping
 ###########################
-	
+
 <#MutterTableView> <http://www.w3.org/ns/r2rml#sqlQuery> """Select id, mutter from BioTabelle1;
 							""".
 
@@ -44,7 +44,7 @@
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
 		<http://www.w3.org/ns/r2rml#objectMap>
-		[ 
+		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/mother>
@@ -52,12 +52,12 @@
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
 		<http://www.w3.org/ns/r2rml#objectMap>
-		[ 
+		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] .
-	
+
 ###########################
 # Father/Professor Mapping
 ###########################
@@ -72,7 +72,7 @@
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
 				<http://www.w3.org/ns/r2rml#column> "\"vater\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+				<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
 			];
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
@@ -81,7 +81,7 @@
 				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 			];
 	].
-	
+
 ###########################
 # Mother/Professor Mapping
 ###########################
@@ -96,7 +96,7 @@
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
 				<http://www.w3.org/ns/r2rml#column> "\"mutter\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+				<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
 			];
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
@@ -105,4 +105,3 @@
 				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 			];
 	].
-	
