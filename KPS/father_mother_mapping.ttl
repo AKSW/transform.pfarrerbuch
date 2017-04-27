@@ -20,6 +20,8 @@
 		<http://www.w3.org/ns/r2rml#objectMap>
 		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
+			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
+			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/father>
 	] ;
@@ -28,6 +30,8 @@
 		<http://www.w3.org/ns/r2rml#objectMap>
 		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
+			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
+			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] ;
@@ -36,6 +40,8 @@
 		<http://www.w3.org/ns/r2rml#objectMap>
 		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
+			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
+			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/mother>
 	] ;
@@ -44,6 +50,8 @@
 		<http://www.w3.org/ns/r2rml#objectMap>
 		[
 			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
+			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
+			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		] ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] .
@@ -56,11 +64,15 @@
 	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView>;
 	<http://www.w3.org/ns/r2rml#subjectMap> [
 		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
+		smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
+		smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> ;
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
+				smap:requiredPattern """V: (.*)$""" ;
+				smap:transformPattern """$1""" ;
 				<http://www.w3.org/ns/r2rml#column> "\"vater\"";
 				<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
 			];
@@ -80,11 +92,15 @@
 	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView>;
 	<http://www.w3.org/ns/r2rml#subjectMap> [
 		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
+		smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
+		smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
 		<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> ;
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
+				smap:requiredPattern """M: (.*)$""" ;
+				smap:transformPattern """$1""" ;
 				<http://www.w3.org/ns/r2rml#column> "\"mutter\"";
 				<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
 			];
