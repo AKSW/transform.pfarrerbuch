@@ -5,169 +5,108 @@
 @prefix smap: <http://aksw.org/Projects/SparqlMap/vocab#> .
 @prefix r2rml: <http://www.w3.org/ns/r2rml#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hp: <http://purl.org/voc/hp/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 <#PersonTriplesMap>
-	<http://www.w3.org/ns/r2rml#logicalTable>
-			[
-				<http://www.w3.org/ns/r2rml#tableName> "\"BioTabelle1\""
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-		[
-			<http://www.w3.org/ns/r2rml#objectMap>
-			[
-				<http://www.w3.org/ns/r2rml#column> "\"Präfix\""
-			] ;
-			<http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/title>
+	r2rml:logicalTable [ r2rml:tableName "\"BioTabelle1\"" ] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Präfix\"" ] ;
+			r2rml:predicate foaf:title
 		] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-		[
-			<http://www.w3.org/ns/r2rml#objectMap>
-			[
-				<http://www.w3.org/ns/r2rml#column> "\"Vornamen\"";
-			] ;
-			<http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/firstName>
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Vornamen\"" ] ;
+			r2rml:predicate foaf:firstName
 		] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Nachname\"";
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/lastName>
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Nachname\"" ] ;
+			r2rml:predicate foaf:lastName
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:template "{Nachname}, {Vornamen}" ;
+				r2rml:termType r2rml:Literal
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#template> "{Nachname}, {Vornamen}" ;
-					<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/name>
+			r2rml:predicate foaf:name
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:template "{Nachname}, {Vornamen}" ;
+				r2rml:termType r2rml:Literal;
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#template> "{Nachname}, {Vornamen}" ;
-					<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>
+			r2rml:predicate rdfs:label
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Geb_Datum\"" ;
+				smap:requiredPattern """^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})$""" ;
+				smap:transformPattern """$3-$2-$1""" ;
+				r2rml:datatype xsd:date ;
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Geb_Datum\"" ;
-					smap:requiredPattern """^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})$""" ;
-					smap:transformPattern """$3-$2-$1""" ;
-					r2rml:datatype xsd:date ;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/birthDate>
+			r2rml:predicate hp:birthDate
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Sterb_Datum\"" ;
+				smap:requiredPattern """^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})$""" ;
+				smap:transformPattern """$3-$2-$1""" ;
+				r2rml:datatype xsd:date ;
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Sterb_Datum\"" ;
-					smap:requiredPattern """^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{2,4})$""" ;
-					smap:transformPattern """$3-$2-$1""" ;
-					r2rml:datatype xsd:date ;
-				] ;
-
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/dateOfDeath>
+			r2rml:predicate hp:dateOfDeath
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Quellen\"" ] ;
+			r2rml:predicate dc:source
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Bemerkung\"" ] ;
+			r2rml:predicate rdfs:comment
+		] ;
+	 r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Kinder\"" ] ;
+			r2rml:predicate hp:childComment
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Karteikasten\"" ] ;
+			r2rml:predicate hp:registryFolder
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Erfassungs-Nr\"" ] ;
+			r2rml:predicate hp:registryCollection
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Sort_Nr\"" ] ;
+			r2rml:predicate hp:registrySort
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
+				smap:requiredPattern """^[^°]$""" ;
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Quellen\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/dc/elements/1.1/source>
+			r2rml:predicate hp:birthPlace
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Sterb_Ort\"}";
+				smap:requiredPattern """^[^°]$""" ;
 			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Bemerkung\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#comment>
-			] ;
-	 <http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Kinder\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/childComment>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Karteikasten\"" ;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/registryFolder>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Erfassungs-Nr\"" ;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/registryCollection>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column> "\"Sort_Nr\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate>	<http://purl.org/vok/hp/registrySort>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
-					smap:requiredPattern """^[^°]$""" ;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate>	<http://purl.org/vok/hp/birthPlace>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Sterb_Ort\"}";
-					smap:requiredPattern """^[^°]$""" ;
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate>	<http://purl.org/vok/hp/placeOfDeath>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column>	"\"Ausbildung\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://localhost/baseiri/vocab/BioTabelle1#Ausbildung>
-			] ;
-	<http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#column>	"\"Ordination_Zeit\""
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate> <http://purl.org/vok/hp/dateOfOrdination>
-			] ;
-	 <http://www.w3.org/ns/r2rml#predicateObjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#objectMap>
-				[
-					<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/ort/{\"Ordination_Ort\"}"
-				] ;
-				<http://www.w3.org/ns/r2rml#predicate>  <http://purl.org/vok/hp/placeOfOrdination>
-			] ;
-	<http://www.w3.org/ns/r2rml#subjectMap>
-			[
-				<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> ;
-				<http://www.w3.org/ns/r2rml#template>	"http://pfarrerbuch.aksw.org/kps/person/{\"ID\"}"
-			] .
+			r2rml:predicate hp:placeOfDeath
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Ausbildung\"" ] ;
+			r2rml:predicate hp:education
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:column "\"Ordination_Zeit\"" ] ;
+			r2rml:predicate hp:dateOfOrdination
+		] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Ordination_Ort\"}" ] ;
+			r2rml:predicate hp:placeOfOrdination
+		] ;
+	r2rml:subjectMap [
+			r2rml:class foaf:Person ;
+			r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"ID\"}"
+		] .
