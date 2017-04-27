@@ -51,14 +51,41 @@
 	r2rml:logicalTable <#TableView> ;
 	r2rml:subjectMap <#VaterResource> ;
 	r2rml:predicateObjectMap [
-			r2rml:predicate rdfs:label;
 			r2rml:objectMap [
 				smap:requiredPattern """^V: (.*)$""" ;
 				smap:transformPattern """$1""" ;
 				r2rml:column "\"vater\"";
-				r2rml:termType r2rml:Literal;
-			];
-	];
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:comment ;
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*),(.*)$""" ;
+				smap:transformPattern """$1""" ;
+				r2rml:column "\"vater\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate foaf:name ;
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*), \\* ([^,]*),(.*)$""" ;
+				smap:transformPattern """$2""" ;
+				r2rml:column "\"vater\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate hp:birth ;
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*)([^+]*) \\+ ([^,]*)(.*)$""" ;
+				smap:transformPattern """$3""" ;
+				r2rml:column "\"vater\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate hp:death ;
+	] ;
 	r2rml:predicateObjectMap [
 			r2rml:predicate hp:parent;
 			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
@@ -72,14 +99,32 @@
 	r2rml:logicalTable <#TableView>;
 	r2rml:subjectMap <#MutterResource> ;
 	r2rml:predicateObjectMap [
-			r2rml:predicate rdfs:label;
 			r2rml:objectMap [
 				smap:requiredPattern """^M: (.*)$""" ;
 				smap:transformPattern """$1""" ;
 				r2rml:column "\"mutter\"";
 				r2rml:termType r2rml:Literal;
 			];
+			r2rml:predicate rdfs:comment;
 	];
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*), \\* ([^,]*),(.*)$""" ;
+				smap:transformPattern """$2""" ;
+				r2rml:column "\"mutter\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate hp:birth ;
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*)([^+]*) \\+ ([^,]*)(.*)$""" ;
+				smap:transformPattern """$3""" ;
+				r2rml:column "\"mutter\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate hp:death ;
+	] ;
 	r2rml:predicateObjectMap [
 			r2rml:predicate hp:parent;
 			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
