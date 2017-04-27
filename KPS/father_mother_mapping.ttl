@@ -3,11 +3,23 @@
 @prefix r2rml: <http://www.w3.org/ns/r2rml#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<#TableView> <http://www.w3.org/ns/r2rml#tableName> "\"BioTabelle1\"" .
+
+<#VaterResource>
+	<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
+	smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
+	smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
+	<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> .
+
+<#MutterResource>
+	<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
+	smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
+	smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
+	<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> .
+
 ###########################
 # Father/Mother Mapping
 ###########################
-<#TableView> <http://www.w3.org/ns/r2rml#sqlQuery> """select id, vater, mutter from BioTabelle1;
-""".
 
 <#VaterTriplesMap>
 	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView>;
@@ -17,42 +29,22 @@
 	];
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>
-		[
-			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
-			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
-			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		] ;
+		<http://www.w3.org/ns/r2rml#objectMap> <#VaterResource> ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/father>
 	] ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>
-		[
-			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
-			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
-			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		] ;
+		<http://www.w3.org/ns/r2rml#objectMap> <#VaterResource> ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>
-		[
-			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
-			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
-			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		] ;
+		<http://www.w3.org/ns/r2rml#objectMap> <#MutterResource> ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/mother>
 	] ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap>
 	[
-		<http://www.w3.org/ns/r2rml#objectMap>
-		[
-			<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
-			smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
-			smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		] ;
+		<http://www.w3.org/ns/r2rml#objectMap> <#MutterResource> ;
 		<http://www.w3.org/ns/r2rml#predicate>	<http://pfarrerbuch.aksw.org/hp/parent>
 	] .
 
@@ -61,13 +53,8 @@
 ###########################
 
 <#ParentVaterTriplesMap>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
-		smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
-		smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> ;
-	];
+	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView> ;
+	<http://www.w3.org/ns/r2rml#subjectMap> <#VaterResource> ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
@@ -88,14 +75,10 @@
 # Mother/Professor Mapping
 ###########################
 
+
 <#ParentMutterTriplesMap>
 	<http://www.w3.org/ns/r2rml#logicalTable> <#TableView>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
-		smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
-		smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
-		<http://www.w3.org/ns/r2rml#class> <http://xmlns.com/foaf/0.1/Person> ;
-	];
+	<http://www.w3.org/ns/r2rml#subjectMap> <#MutterResource> ;
 	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
 			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
 			<http://www.w3.org/ns/r2rml#objectMap> [
