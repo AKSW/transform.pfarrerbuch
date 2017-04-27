@@ -13,6 +13,13 @@
 <#PersonTriplesMap>
 	r2rml:logicalTable [ r2rml:tableName "\"BioTabelle1\"" ] ;
 	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:template "true" ;
+				r2rml:datatype xsd:boolean ;
+			] ;
+			r2rml:predicate hp:isPastor
+		] ;
+	r2rml:predicateObjectMap [
 			r2rml:objectMap [ r2rml:column "\"Präfix\"" ] ;
 			r2rml:predicate foaf:title
 		] ;
