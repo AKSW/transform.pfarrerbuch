@@ -1,43 +1,44 @@
-@base <urn:tmp:kpsmapping> .
-@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix r2rml: <http://www.w3.org/ns/r2rml#> .
+@prefix hp: <http://purl.org/voc/hp/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ###########################
 # Position Mapping 1
 ###########################
 
 <#PositionTableView1>
-	<http://www.w3.org/ns/r2rml#sqlQuery>
+	r2rml:sqlQuery>
 		"""Select id, Berufung1_Als as position, Berufung1_Ort as address, Berufung1_Zeit as zeit from BioTabelle1;""".
 
 <#PositionTriplesMap1>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView1>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
+	r2rml:logicalTable <#PositionTableView1>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate <http://www.w3.org/2000/01/rdf-schema#label>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/positionDesignation>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:positionDesignation;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/place>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:place;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/period>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:period;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
 			];
 	]
 	.
@@ -47,14 +48,14 @@
 ###########################
 
 <#PersonPositionTriplesMap1>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView1>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
+	r2rml:logicalTable <#PositionTableView1>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/hasPosition>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:hasPosition;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
 			];
 	];
 	.
@@ -63,38 +64,38 @@
 # Position Mapping 2
 ###########################
 
-<#PositionTableView2> <http://www.w3.org/ns/r2rml#sqlQuery> """Select id, Berufung2_Als as position, Berufung2_Ort as address, Berufung2_Zeit as zeit from BioTabelle1;
+<#PositionTableView2> r2rml:sqlQuery """Select id, Berufung2_Als as position, Berufung2_Ort as address, Berufung2_Zeit as zeit from BioTabelle1;
 """.
 
 <#PositionTriplesMap2>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView2>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
+	r2rml:logicalTable <#PositionTableView2>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate <http://www.w3.org/2000/01/rdf-schema#label>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/positionDesignation>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:positionDesignation;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/place>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:place;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/period>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:period;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
 			];
 	]
 	.
@@ -104,14 +105,14 @@
 ###########################
 
 <#PersonPositionTriplesMap2>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView2>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
+	r2rml:logicalTable <#PositionTableView2>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/hasPosition>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:hasPosition;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
 			];
 	];
 	.
@@ -120,38 +121,38 @@
 # Position Mapping 3
 ###########################
 
-<#PositionTableView3> <http://www.w3.org/ns/r2rml#sqlQuery> """Select id, Berufung3_Als as position, Berufung3_Ort as address, Berufung3_Zeit as zeit from BioTabelle1;
+<#PositionTableView3> r2rml:sqlQuery """Select id, Berufung3_Als as position, Berufung3_Ort as address, Berufung3_Zeit as zeit from BioTabelle1;
 """.
 
 <#PositionTriplesMap3>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView3>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
+	r2rml:logicalTable <#PositionTableView3>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate <http://www.w3.org/2000/01/rdf-schema#label>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/positionDesignation>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:positionDesignation;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/place>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:place;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/period>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:period;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
 			];
 	]
 	.
@@ -161,14 +162,14 @@
 ###########################
 
 <#PersonPositionTriplesMap3>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView3>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
+	r2rml:logicalTable <#PositionTableView3>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/hasPosition>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:hasPosition;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
 			];
 	];
 	.
@@ -177,38 +178,38 @@
 # Position Mapping 4
 ###########################
 
-<#PositionTableView4> <http://www.w3.org/ns/r2rml#sqlQuery> """Select id, Berufung4_Als as position, Berufung4_Ort as address, Berufung4_Zeit as zeit from BioTabelle1;
+<#PositionTableView4> r2rml:sqlQuery> """Select id, Berufung4_Als as position, Berufung4_Ort as address, Berufung4_Zeit as zeit from BioTabelle1;
 """.
 
 <#PositionTriplesMap4>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView4>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
+	r2rml:logicalTable <#PositionTableView4>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate <http://www.w3.org/2000/01/rdf-schema#label>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/positionDesignation>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:positionDesignation;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/place>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:place;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/period>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:period;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
 			];
 	]
 	.
@@ -218,14 +219,14 @@
 ###########################
 
 <#PersonPositionTriplesMap4>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView4>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
+	r2rml:logicalTable <#PositionTableView4>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/hasPosition>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:hasPosition;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
 			];
 	];
 .
@@ -234,38 +235,38 @@
 # Position Mapping 5
 ###########################
 
-<#PositionTableView5> <http://www.w3.org/ns/r2rml#sqlQuery> """Select id, Berufung5_Als as position, Berufung5_Ort as address, Berufung5_Zeit as zeit from BioTabelle1;
+<#PositionTableView5> r2rml:sqlQuery """Select id, Berufung5_Als as position, Berufung5_Ort as address, Berufung5_Zeit as zeit from BioTabelle1;
 """.
 
 <#PositionTriplesMap5>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView5>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
+	r2rml:logicalTable <#PositionTableView5>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}/{\"position\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://www.w3.org/2000/01/rdf-schema#label>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate <http://www.w3.org/2000/01/rdf-schema#label>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/positionDesignation>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#column> "\"position\"";
-				<http://www.w3.org/ns/r2rml#datatype> <http://www.w3.org/ns/r2rml#Literal>
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:positionDesignation>;
+			r2rml:objectMap [
+				r2rml:column "\"position\"";
+				r2rml:termType r2rml:Literal
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/place>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:place;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"address\"}";
 			];
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/period>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:period;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"zeit\"}";
 			];
 	];
 	.
@@ -275,14 +276,14 @@
 ###########################
 
 <#PersonPositionTriplesMap5>
-	<http://www.w3.org/ns/r2rml#logicalTable> <#PositionTableView5>;
-	<http://www.w3.org/ns/r2rml#subjectMap> [
-		<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
+	r2rml:logicalTable <#PositionTableView5>;
+	r2rml:subjectMap [
+		r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}";
 	];
-	<http://www.w3.org/ns/r2rml#predicateObjectMap> [
-			<http://www.w3.org/ns/r2rml#predicate> <http://pfarrerbuch.aksw.org/hp/hasPosition>;
-			<http://www.w3.org/ns/r2rml#objectMap> [
-				<http://www.w3.org/ns/r2rml#template> "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
+	r2rml:predicateObjectMap [
+			r2rml:predicate hp:hasPosition;
+			r2rml:objectMap [
+				r2rml:template "http://pfarrerbuch.aksw.org/kps/position/{\"position\"}";
 			];
 	];
 	.
