@@ -25,7 +25,7 @@
 
 <#VaterTriplesMap>
 	r2rml:logicalTable <#TableView>;
-	r2rml:subjectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
+	r2rml:subjectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
 	r2rml:predicateObjectMap [
 		r2rml:objectMap <#VaterResource> ;
 		r2rml:predicate hp:father
@@ -88,7 +88,7 @@
 	] ;
 	r2rml:predicateObjectMap [
 			r2rml:predicate hp:parent;
-			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
+			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
 	].
 
 ###########################
@@ -127,5 +127,5 @@
 	] ;
 	r2rml:predicateObjectMap [
 			r2rml:predicate hp:parent;
-			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
+			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
 	].

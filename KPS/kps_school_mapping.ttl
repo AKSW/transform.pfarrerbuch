@@ -6,11 +6,10 @@
 # School Mapping
 ###########################
 
-<#SchoolTableView> r2rml:sqlQuery """Select distinct Ausbildung from BioTabelle1
-""".
+<#TableView> r2rml:tableName "\"BioTabelle1\"" .
 
 <#SchoolsTriplesMap>
-    r2rml:logicalTable <#SchoolTableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [ 
         r2rml:template "http://pfarrerbuch.aksw.org/kps/schule/{\"Ausbildung\"}";
         r2rml:class hp:School;
@@ -30,13 +29,10 @@
 		];
     ].
 	
-<#SchoolPersonTableView> r2rml:sqlQuery """Select distinct id, Ausbildung from BioTabelle1
-""".
-
 <#SchoolsPersonTriplesMap>
-r2rml:logicalTable <#SchoolPersonTableView>;
+r2rml:logicalTable <#TableView>;
 r2rml:subjectMap [
-	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"ID\"}";
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}";
 ];
 r2rml:predicateObjectMap [
 	r2rml:predicate hp:attendedSchool;

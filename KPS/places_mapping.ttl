@@ -8,11 +8,10 @@
 # Places Mapping
 ###########################
 
-<#Places1TableView> r2rml:sqlQuery """
-select distinct Geb_Ort from BioTabelle1;
-""".
+<#TableView> r2rml:tableName "\"BioTabelle1\"" .
+
 <#Places1TriplesMap>
-    r2rml:logicalTable <#Places1TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
         r2rml:class hp:Place
@@ -32,11 +31,8 @@ select distinct Geb_Ort from BioTabelle1;
 		];
     ].
 
-<#Places2TableView> r2rml:sqlQuery """
-Select distinct Ordination_Ort from BioTabelle1;
-""".
 <#Places2TriplesMap>
-    r2rml:logicalTable <#Places2TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Ordination_Ort\"}";
         r2rml:class hp:Place
@@ -56,11 +52,9 @@ Select distinct Ordination_Ort from BioTabelle1;
 		];
     ].
 	
-<#Places3TableView> r2rml:sqlQuery """
-select distinct Berufung1_Ort from BioTabelle1;
-""".
+
 <#Places3TriplesMap>
-    r2rml:logicalTable <#Places3TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung1_Ort\"}";		
         r2rml:class hp:Place
@@ -80,11 +74,8 @@ select distinct Berufung1_Ort from BioTabelle1;
 		];
     ].
 
-<#Places4TableView> r2rml:sqlQuery """
-Select distinct Berufung2_Ort from BioTabelle1;
-""".
 <#Places4TriplesMap>
-    r2rml:logicalTable <#Places4TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung2_Ort\"}";		
         r2rml:class hp:Place
@@ -104,11 +95,8 @@ Select distinct Berufung2_Ort from BioTabelle1;
 		];
     ].
 
-<#Places5TableView> r2rml:sqlQuery """
-select distinct Berufung3_Ort from BioTabelle1;
-""".
 <#Places5TriplesMap>
-    r2rml:logicalTable <#Places5TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung3_Ort\"}";
         r2rml:class hp:Place
@@ -128,11 +116,8 @@ select distinct Berufung3_Ort from BioTabelle1;
 		];
     ].
 
-<#Places6TableView> r2rml:sqlQuery """
-Select distinct Berufung4_Ort from BioTabelle1;
-""".
 <#Places6TriplesMap>
-    r2rml:logicalTable <#Places6TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung4_Ort\"}";
         r2rml:class hp:Place
@@ -152,11 +137,8 @@ Select distinct Berufung4_Ort from BioTabelle1;
 		];
     ].
 
-<#Places7TableView> r2rml:sqlQuery """
-Select distinct Berufung5_Ort from BioTabelle1;
-""".
 <#Places7TriplesMap>
-    r2rml:logicalTable <#Places7TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung5_Ort\"}";
         r2rml:class hp:Place
@@ -176,11 +158,8 @@ Select distinct Berufung5_Ort from BioTabelle1;
 		];
     ].
 
-<#Places8TableView> r2rml:sqlQuery """
-Select distinct Berufung6_Ort from BioTabelle1;
-""".
 <#Places8TriplesMap>
-    r2rml:logicalTable <#Places8TableView>;
+    r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung6_Ort\"}";
         r2rml:class hp:Place
