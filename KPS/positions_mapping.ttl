@@ -7,7 +7,7 @@
 ###########################
 
 <#PositionTableView1>
-	r2rml:sqlQuery>
+	r2rml:sqlQuery
 		"""Select id, Berufung1_Als as position, Berufung1_Ort as address, Berufung1_Zeit as zeit from BioTabelle1;""".
 
 <#PositionTriplesMap1>
@@ -178,7 +178,7 @@
 # Position Mapping 4
 ###########################
 
-<#PositionTableView4> r2rml:sqlQuery> """Select id, Berufung4_Als as position, Berufung4_Ort as address, Berufung4_Zeit as zeit from BioTabelle1;
+<#PositionTableView4> r2rml:sqlQuery """Select id, Berufung4_Als as position, Berufung4_Ort as address, Berufung4_Zeit as zeit from BioTabelle1;
 """.
 
 <#PositionTriplesMap4>
@@ -251,7 +251,7 @@
 			];
 	];
 	r2rml:predicateObjectMap [
-			r2rml:predicate hp:positionDesignation>;
+			r2rml:predicate hp:positionDesignation;
 			r2rml:objectMap [
 				r2rml:column "\"position\"";
 				r2rml:termType r2rml:Literal

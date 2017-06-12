@@ -6,7 +6,7 @@
 # School Mapping
 ###########################
 
-<#SchoolTableView> r2rml:sqlQuery> """Select distinct Ausbildung from BioTabelle1
+<#SchoolTableView> r2rml:sqlQuery """Select distinct Ausbildung from BioTabelle1
 """.
 
 <#SchoolsTriplesMap>
@@ -15,7 +15,7 @@
         r2rml:template "http://pfarrerbuch.aksw.org/kps/schule/{\"Ausbildung\"}";
         r2rml:class hp:School;
     ];
-    r2rml:predicateObjectMap> [
+    r2rml:predicateObjectMap [
         r2rml:predicate hp:nameOfSchool;
         r2rml:objectMap [
 			r2rml:column "\"Ausbildung\"";
