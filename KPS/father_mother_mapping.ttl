@@ -68,6 +68,15 @@
 			] ;
 			r2rml:predicate foaf:name ;
 	] ;
+    r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^V: ([^,]*),(.*)$""" ;
+				smap:transformPattern """$1""" ;
+				r2rml:column "\"vater\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:label ;
+	] ;
 	r2rml:predicateObjectMap [
 			r2rml:objectMap [
 				smap:requiredPattern """^V: ([^,]*), \\* ([^,]*),(.*)$""" ;
@@ -106,6 +115,24 @@
 				r2rml:termType r2rml:Literal;
 			];
 			r2rml:predicate rdfs:comment;
+	];
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^M: (.*)$""" ;
+				smap:transformPattern """$1""" ;
+				r2rml:column "\"mutter\"";
+				r2rml:termType r2rml:Literal;
+			];
+			r2rml:predicate rdfs:label;
+	];
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				smap:requiredPattern """^M: (.*)$""" ;
+				smap:transformPattern """$1""" ;
+				r2rml:column "\"mutter\"";
+				r2rml:termType r2rml:Literal;
+			];
+			r2rml:predicate foaf:name;
 	];
 	r2rml:predicateObjectMap [
 			r2rml:objectMap [

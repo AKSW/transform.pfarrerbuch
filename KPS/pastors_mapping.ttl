@@ -90,14 +90,12 @@
 	r2rml:predicateObjectMap [
 			r2rml:objectMap [
 				r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
-				smap:requiredPattern """^[^°]$""" ;
 			] ;
 			r2rml:predicate hp:birthPlace
 		] ;
 	r2rml:predicateObjectMap [
 			r2rml:objectMap [
 				r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Sterb_Ort\"}";
-				smap:requiredPattern """^[^°]$""" ;
 			] ;
 			r2rml:predicate hp:placeOfDeath
 		] ;

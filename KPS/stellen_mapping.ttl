@@ -1,0 +1,93 @@
+@prefix smap: <http://aksw.org/Projects/SparqlMap/vocab#> .
+@prefix r2rml: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix hp: <http://purl.org/voc/hp/> .
+
+<#TableView> r2rml:tableName "\"Tabelle1\"" .
+
+<#StellenPlaceOrt>
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Ort\"}";
+	r2rml:class hp:Place .
+	
+<#StellenPlaceGL>
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Geographische Lage\"}";
+	r2rml:class hp:Place .
+	
+<#StellenPlaceKirche>
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Gemeinde/Kirche\"}";
+	r2rml:class hp:Place .
+
+###########################
+# Stallen Mapping
+###########################
+
+<#VaterTriplesMap>
+	r2rml:logicalTable <#TableView>;
+	r2rml:subjectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/stellen/{\"ort\"}/{\"Geographische Lage\"}/{\"Gemeinde/Kirche\"}/{\"Pfarrer\"}" ;
+	r2rml:class hp:Position 
+	];
+	r2rml:predicateObjectMap [
+		r2rml:objectMap <#StellenPlaceOrt> ;
+		r2rml:predicate hp:place
+	] ;
+	r2rml:predicateObjectMap [
+		r2rml:objectMap <#StellenPlaceGL> ;
+		r2rml:predicate hp:place
+	] ;
+	r2rml:predicateObjectMap [
+		r2rml:objectMap <#StellenPlaceKirche> ;
+		r2rml:predicate hp:place
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Bemerkungen\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:comment ;
+	] ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Pfarrstellen- bezeichnung\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate hp:positionDesignation ;
+	].
+
+###########################
+# Stellen/Places Mapping
+###########################
+
+<#StellenPlaceOrtMap>
+	r2rml:logicalTable <#TableView> ;
+	r2rml:subjectMap <#StellenPlaceOrt> ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Ort\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:label ;
+	].
+
+<#StellenPlaceGLMap>
+	r2rml:logicalTable <#TableView> ;
+	r2rml:subjectMap <#StellenPlaceGL> ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Geographische Lage\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:label ;
+	].
+	
+<#StellenPlaceKircheMap>
+	r2rml:logicalTable <#TableView> ;
+	r2rml:subjectMap <#StellenPlaceKirche> ;
+	r2rml:predicateObjectMap [
+			r2rml:objectMap [
+				r2rml:column "\"Gemeinde/Kirche\"";
+				r2rml:termType r2rml:Literal ;
+			] ;
+			r2rml:predicate rdfs:label ;
+	].
