@@ -3,3 +3,5 @@ These are transformation files for different data sources for the pfarrerbuch pr
 **Sachsen** Data of pastors serving or served in the [_Evangelical Lutheran Church of Saxony_](https://de.wikipedia.org/wiki/Evangelisch-Lutherische_Landeskirche_Sachsens).
 
 **KPS** Data of pastors serving or served in the [_Church Province of Saxony_ (Kirchenprovinz Sachsen)](https://en.wikipedia.org/wiki/Evangelical_Church_of_the_Church_Province_of_Saxony).
+
+**Ungarn** Data of pastors of the Lutheran Church in Hungary, which we got from the _Instituts für Kirchengeschichte an der Evangelisch-Lutherischen Theologischen Universität Budapest_.
