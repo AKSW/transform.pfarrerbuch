@@ -8,15 +8,11 @@
 <#TableView> r2rml:tableName "\"BioTabelle1\"" .
 
 <#VaterResource>
-	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"vater\"}";
-	smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/V%3A%20(.*)$""" ;
-	smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}-vater";
 	r2rml:class foaf:Person .
 
 <#MutterResource>
-	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"mutter\"}";
-	smap:requiredPattern """^http://pfarrerbuch\\.aksw\\.org/kps/person/M%3A%20(.*)$""" ;
-	smap:transformPattern """http://pfarrerbuch\\.aksw\\.org/kps/person/$1""" ;
+	r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}-mutter";
 	r2rml:class foaf:Person .
 
 ###########################
@@ -25,7 +21,7 @@
 
 <#VaterTriplesMap>
 	r2rml:logicalTable <#TableView>;
-	r2rml:subjectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
+	r2rml:subjectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
 	r2rml:predicateObjectMap [
 		r2rml:objectMap <#VaterResource> ;
 		r2rml:predicate hp:father
@@ -96,8 +92,8 @@
 			r2rml:predicate hp:death ;
 	] ;
 	r2rml:predicateObjectMap [
-			r2rml:predicate hp:parent;
-			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
+			r2rml:predicate hp:child;
+			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
 	].
 
 ###########################
@@ -153,6 +149,6 @@
 			r2rml:predicate hp:death ;
 	] ;
 	r2rml:predicateObjectMap [
-			r2rml:predicate hp:parent;
-			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}" ];
+			r2rml:predicate hp:child;
+			r2rml:objectMap [ r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}" ];
 	].

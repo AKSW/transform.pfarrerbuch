@@ -14,6 +14,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Geb_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?]*)$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -35,6 +37,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Ordination_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?]*)$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -51,12 +55,14 @@
 			r2rml:termType r2rml:Literal
 		];
     ].
-	
+
 
 <#Places3TriplesMap>
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
-        r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung1_Ort\"}";		
+        r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung1_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -77,7 +83,9 @@
 <#Places4TriplesMap>
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
-        r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung2_Ort\"}";		
+        r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung2_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -99,6 +107,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung3_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -120,6 +130,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung4_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -141,6 +153,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung5_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [
@@ -162,6 +176,8 @@
     r2rml:logicalTable <#TableView>;
     r2rml:subjectMap [
         r2rml:template "http://pfarrerbuch.aksw.org/kps/ort/{\"Berufung6_Ort\"}";
+        smap:requiredPattern """^http://pfarrerbuch.aksw.org/kps/ort/([^°\\.?])$""" ;
+        smap:transformPattern """http://pfarrerbuch.aksw.org/kps/ort/$1""" ;
         r2rml:class hp:Place
     ];
     r2rml:predicateObjectMap [

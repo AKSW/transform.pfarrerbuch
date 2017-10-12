@@ -113,5 +113,5 @@
 		] ;
 	r2rml:subjectMap [
 			r2rml:class foaf:Person ;
-			r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}/{\"Nachname\"}/{\"Vornamen\"}/{\"Geb_Ort\"}"
+			r2rml:template "http://pfarrerbuch.aksw.org/kps/person/{\"id\"}"
 		] .
