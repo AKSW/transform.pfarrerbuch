@@ -4,7 +4,7 @@ A requirement is [SparqlMap](https://github.com/tomatophantastico/sparqlmap).
 
 The transformation can be executed using the following command:
 
-    ./bin/sparqlmap --action=dump --ds.type=ACCESS --ds.url=source.mdb --r2rmlFile=mapping.ttl > result.ttl
+    ./bin/sparqlmap --action=dump --ds.type=ACCESS --ds.url=source.mdb --r2rmlfile=mapping.ttl > result.ttl
 
 # Issues
 
